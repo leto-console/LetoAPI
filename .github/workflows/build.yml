@@ -1,29 +1,63 @@
-name: CMake Multi-Preset Build
+name: Multi-Platform Build (STM32 & Windows)
 
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  matrix-build:
+  # 1. Сборка прошивок для микроконтроллеров STM32
+  build-stm32:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-          - preset: "linux-debug"
-            os: ubuntu-latest
-          - preset: "linux-release"
-            os: ubuntu-latest
-          - preset: "win-release"
-            os: windows-latest
-
-    runs-on: ${{ matrix.os }}
+        preset: [ "stm32f401xc-debug", "stm32f411xe-debug" ]
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Install Ninja & ARM Toolchain
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y ninja-build gcc-arm-none-eabi
+
     - name: Configure CMake
       run: cmake --preset ${{ matrix.preset }}
 
+    - name: Build Firmware
+      run: cmake --build --preset ${{ matrix.preset }}
+
+    - name: Upload STM32 Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: lib-${{ matrix.preset }}
+        path: lib/${{ matrix.preset }}/
+        if-no-files-found: error
+
+  # 2. Сборка нативного приложения под Windows (MSVC)
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Ninja
+      run: choco install ninja
+
+    - name: Set up MSVC Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1
+
+    - name: Configure CMake
+      run: cmake --preset win-debug
+
     - name: Build Project
-      run: cmake --build -j --preset ${{ matrix.preset }}
+      run: cmake --build --preset win-debug
+
+    - name: Upload Windows Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: windows-binary
+        path: bin/win-debug/
