@@ -8,20 +8,35 @@ on:
 
 jobs:
   # 1. Сборка прошивок для микроконтроллеров STM32
-  build-stm32:
-    runs-on: ubuntu-latest
+  build-and-pack:
     strategy:
       matrix:
-        preset: [ "stm32f401xc-debug", "stm32f411xe-debug" ]
+        include:
+          - preset: "stm32f401xc-debug"
+            os: ubuntu-latest
+          - preset: "stm32f411xe-debug"
+            os: ubuntu-latest
+          - preset: "win-debug"
+            os: windows-latest
+    runs-on: ${{ matrix.os }}
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Install Ninja & ARM Toolchain
+    - name: Install Dependencies (Linux)
+      if: runner.os == 'Linux'
       run: |
         sudo apt-get update
         sudo apt-get install -y ninja-build gcc-arm-none-eabi
+
+    - name: Install Dependencies (Windows)
+      if: runner.os == 'Windows'
+      run: choco install ninja
+
+    - name: Set up MSVC Developer Command Prompt (Windows)
+      if: runner.os == 'Windows'
+      uses: ilammy/msvc-dev-cmd@v1
 
     - name: Configure CMake
       run: cmake --preset ${{ matrix.preset }}
@@ -29,38 +44,12 @@ jobs:
     - name: Build Firmware
       run: cmake --build --preset ${{ matrix.preset }}
 
-    - name: Upload STM32 Artifacts
+    - name: Install and Organize SDK
+      run: cmake --install build/${{ matrix.preset }} --prefix dist/${{ matrix.preset }}
+
+    - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: LetoAPI-${{ matrix.preset }}
-        path: lib/${{ matrix.preset }}/
-        if-no-files-found: error
-
-  # 2. Сборка нативного приложения под Windows (MSVC)
-  build-windows:
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Install Ninja
-      run: choco install ninja
-
-    - name: Set up MSVC Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1
-
-    - name: Configure CMake
-      run: cmake --preset win-debug
-
-    - name: Build Project
-      run: cmake --build --preset win-debug
-
-    - name: Upload Windows Artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: LetoAPI-win-debug
-        path: |
-          bin/win-debug/
-          lib/win-debug/
+        path: dist/${{ matrix.preset }}/
         if-no-files-found: error

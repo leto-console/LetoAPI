@@ -62,4 +62,10 @@ elseif (${PRESET_DEFINE_MACRO} STREQUAL "__TERMUX__")
 
 endif ()
 
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION bin     # Для исполняемых файлов
+    ARCHIVE DESTINATION lib     # Для статических библиотек
+    LIBRARY DESTINATION lib     # Для динамических библиотек
+)
+
 target_compile_definitions(${PROJECT_NAME} PRIVATE LETOAPI_EXPORT_LIBRARY)
