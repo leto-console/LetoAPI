@@ -1,0 +1,29 @@
+name: CMake Multi-Preset Build
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  matrix-build:
+    strategy:
+      matrix:
+        include:
+          - preset: "linux-debug"
+            os: ubuntu-latest
+          - preset: "linux-release"
+            os: ubuntu-latest
+          - preset: "win-release"
+            os: windows-latest
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Configure CMake
+      run: cmake --preset ${{ matrix.preset }}
+
+    - name: Build Project
+      run: cmake --build -j --preset ${{ matrix.preset }}
