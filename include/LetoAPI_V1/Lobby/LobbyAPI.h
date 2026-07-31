@@ -16,7 +16,7 @@
 #pragma pack(push, 4)
 
 /// Game lobby management functions
-struct LobbyAPI_V1
+typedef struct LobbyAPI_V1
 {
     /**
 	 * @brief Get list of available game lobbies nearby
@@ -89,7 +89,8 @@ struct LobbyAPI_V1
      * @return True if ready for connection, false otherwise.
      */
     bool (*const GetReady)();
-};
+
+} LobbyAPI_V1;
 
 #pragma pack(pop)
 

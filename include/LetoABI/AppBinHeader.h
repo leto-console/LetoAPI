@@ -23,10 +23,10 @@
 /**
  * @brief Information about the executable binary file (application)
  */
-struct AppBinHeader
+typedef struct AppBinHeader
 {
 	/// Magic string for validation
-	char type[16] { LETO_EXECUTABLE_TYPE_BIN };
+	char type[16] /*{ LETO_EXECUTABLE_TYPE_BIN }*/;
 
 	/// API major version used by the application
 	uint16_t api_version;
@@ -39,7 +39,7 @@ struct AppBinHeader
 	
 	/// Application name in Russian
 	char ru_name[32] {};
-};
+} AppBinHeader;
 
 #pragma pack(pop)
 

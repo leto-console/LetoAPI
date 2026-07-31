@@ -16,7 +16,7 @@
 #pragma pack(push, 4)
 
 /// Network interaction functions
-struct WebAPI_V1
+typedef struct WebAPI_V1
 {
 	/**
 	 * @brief Create connection
@@ -66,7 +66,8 @@ struct WebAPI_V1
 	 * @return `true` if device was successfully found
 	 */
 	bool (*const FindDeviceNear)(uint32_t id, struct WebDeviceInfo_V1* info);
-};
+	
+} WebAPI_V1;
 
 #pragma pack(pop)
 

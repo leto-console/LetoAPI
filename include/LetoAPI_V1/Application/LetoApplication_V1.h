@@ -7,6 +7,8 @@
 #ifndef INC_LETO_API_V1_APPLICATION_LETO_APPLICATION_V1_H_
 #define INC_LETO_API_V1_APPLICATION_LETO_APPLICATION_V1_H_
 
+#include <LetoAPI_V1/LetoAPI_V1_Def.h>
+
 #include <stdint.h>
 
 #include <ABI/AppBinHeader.h>
@@ -15,14 +17,13 @@
 #include <LetoAPI_V1/LetoAPI_V1.h>
 #include <LetoAPI_V1/Application/LetoAppStatus_V1.h>
 #include <LetoAPI_V1/Application/LetoResult_V1.h>
-#include <LetoAPI_V1/Application/LetoScreen_V1.h>
 
 #pragma pack(push, 4)
 
 /**
  * @brief Leto OS application interface
  */
-struct LetoApplication_V1
+typedef struct LetoApplication_V1
 {
 	/// Executable application header
 	AppBinHeader Header;
@@ -30,7 +31,7 @@ struct LetoApplication_V1
 	/**
 	 * @brief Initialize application
 	 */
-	LetoResult_V1 (*Init) (const struct LetoAPI_V1* api);
+	LetoResult_V1 (*Init) (const LetoAPI_V1* api);
 	
 	/**
 	 * @brief Clean up and release application resources
@@ -55,14 +56,14 @@ struct LetoApplication_V1
 	/**
 	 * @brief Render application UI
 	 */
-	LetoResult_V1 (*Draw) (struct LetoScreen_V1* screen);
+	LetoResult_V1 (*Draw) (LetoScreen_V1* screen);
 	
 	/**
 	 * @brief Execute background tasks or main loop iteration
 	 */
 	LetoResult_V1 (*Loop) ();
 	
-};
+} LetoApplication_V1;
 
 #pragma pack(pop)
 

@@ -20,7 +20,7 @@
 // Align to 4-byte boundary
 #pragma pack(push, 4)
 
-struct LetoAPI_V1
+typedef struct LetoAPI_V1
 {
 #if LETO_API_V1_USE >= 0
 
@@ -33,28 +33,28 @@ struct LetoAPI_V1
     *const Version;
 
     /// Text processing functions
-    const struct TextAPI_V1* const Text;
+    const TextAPI_V1* const Text;
     
     /// Global context functions
-    const struct GlobalsAPI_V1* const Globals;
+    const GlobalsAPI_V1* const Globals;
 
     /// Network interaction functions
-    const struct WebAPI_V1* const Web;
+    const WebAPI_V1* const Web;
 
     /// User management functions
-    const struct UserAPI_V1* const User;
+    const UserAPI_V1* const User;
 
     /// Font management functions
-    const struct FontAPI_V1* const Font;
+    const FontAPI_V1* const Font;
 
     /// Mathematical functions
-    const struct MathAPI_V1* const Math;
+    const MathAPI_V1* const Math;
 
     /// Game lobby management functions
-    const struct LobbyAPI_V1* const Lobby;
+    const LobbyAPI_V1* const Lobby;
 
 #endif /* LETO_API_V1_USE */
-};
+} LetoAPI_V1;
 
 #pragma pack(pop)
 

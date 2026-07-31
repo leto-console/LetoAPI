@@ -7,24 +7,24 @@
 #ifndef INC_LETO_API_V1_USER_USER_API_V1_H_
 #define INC_LETO_API_V1_USER_USER_API_V1_H_
 
+#include <LetoAPI_V1/LetoAPI_V1_Def.h>
+
 #include <stdint.h>
 #include <stdbool.h>
-
-//#include <Storage/NamedSpace.h>
-//#include <Graphics/BitmapData.h>
 
 // Align to 4-byte boundary
 #pragma pack(push, 4)
 
-/// User management functions
-//struct UserAPI_V1
-//{
-//    /// @brief Get user space
-//    NamedSpace* (*const GetUserSpace)();
-//    
-//    /// @brief Get avatar by identifier
-//    bool (*const GetAvatarByID)(uint32_t ID, BitmapData* data);
-//};
+// User management functions
+typedef struct UserAPI_V1
+{
+    /// @brief Get user space
+    //NamedSpace* (*const GetUserSpace)();
+    
+    /// @brief Get avatar by identifier
+    bool (*const GetAvatarByID)(uint32_t ID, LetoBitmap_V1* data);
+    
+} UserAPI_V1;
 
 #pragma pack(pop)
 

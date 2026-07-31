@@ -37,7 +37,7 @@ void __attribute__((optimize("O0"))) init_array(void)
 
 #endif
 
-LetoResult_V1 LetoAppSetup(const struct LetoAPI_V1 *api)
+LetoResult_V1 LetoAppSetup(const LetoAPI_V1 *api)
 {
 #ifdef __STM32__
     clear_bss();

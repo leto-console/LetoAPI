@@ -14,7 +14,7 @@
 #pragma pack(push, 4)
 
 /// Mathematical functions
-struct MathAPI_V1
+typedef struct MathAPI_V1
 {
     /// Arccosine function
     float (*const acosf)(float x);
@@ -75,7 +75,8 @@ struct MathAPI_V1
 
     /// @brief Check if value is infinity
     bool (*const isinff)(float x);
-};
+    
+} MathAPI_V1;
 
 #pragma pack(pop)
 

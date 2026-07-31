@@ -14,7 +14,7 @@
 #pragma pack(push, 4)
 
 /// Text processing functions
-struct TextAPI_V1
+typedef struct TextAPI_V1
 {
     /// Format text string
     int (*const FormatText)(char* const buffer, const size_t buffer_size, const char* const format, ...);
@@ -24,7 +24,8 @@ struct TextAPI_V1
 
     /// Scan and parse text string
     int (*const ScanText)(char* const buffer, const size_t buffer_size, const char* const format, ...);
-};
+    
+} TextAPI_V1;
 
 #pragma pack(pop)
 

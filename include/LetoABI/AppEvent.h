@@ -17,7 +17,7 @@
 /**
  * @brief Application event structure
  */
-struct AppEvent
+typedef struct AppEvent
 {
 	/// Event source (values from AppEventSources)
 	uint16_t source;
@@ -27,13 +27,13 @@ struct AppEvent
 	
 	/// Event payload data
 	uint32_t data
-};
+} AppEvent;
 
 #pragma pack(pop)
 
 /**
  * @brief Function pointer type for comparing two events
  */
-typedef bool (*AppEventComparator)(const struct AppEvent* e1, const struct AppEvent* e2);
+typedef bool (*AppEventComparator)(const AppEvent* e1, const AppEvent* e2);
 
 #endif /* INC_ABI_APP_EVENT_H_ */

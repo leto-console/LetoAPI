@@ -15,7 +15,7 @@ extern "C" {
 #endif
 
 /// @brief LetoAPI_V1 instance pointer
-extern LETO_API_EXPORT const struct LetoAPI_V1* leto_api_v1;
+extern LETO_API_EXPORT const LetoAPI_V1* leto_api_v1;
 
 #ifdef __cplusplus
 }

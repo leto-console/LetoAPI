@@ -19,7 +19,7 @@ extern "C" {
 /**
  * @brief Global initialization function for binary application
  */
-extern LETO_API_EXPORT LetoResult_V1 LetoAppSetup(const struct LetoAPI_V1* api);
+extern LETO_API_EXPORT LetoResult_V1 LetoAppSetup(const LetoAPI_V1* api);
 
 #ifdef __cplusplus
 }

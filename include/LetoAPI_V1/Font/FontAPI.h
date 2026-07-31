@@ -7,17 +7,16 @@
 #ifndef INC_LETO_API_V1_FONT_FONT_API_V1_H_
 #define INC_LETO_API_V1_FONT_FONT_API_V1_H_
 
-#include <stdint.h>
+#include <LetoAPI_V1/LetoAPI_V1_Def.h>
 
-#include <LetoAPI_V1/Font/LetoFont_V1.h>
+#include <stdint.h>
 
 // Align to 4-byte boundary
 #pragma pack(push, 4)
 
 /// Font management functions
-struct FontAPI_V1
+typedef struct FontAPI_V1
 {
-    /// TODO: Font interface needs to be changed - currently it is C++-like with a v-table
     /**
      * @brief Get font
      * 
@@ -25,8 +24,9 @@ struct FontAPI_V1
      * @param height Font height
      * @param type Font type (0 - regular, 1 - small)
      */
-    const struct LetoFont_V1* (*const GetFont)(uint32_t width, uint32_t height, uint32_t type);
-};
+    const LetoFont_V1* (*const GetFont)(uint32_t width, uint32_t height, uint32_t type);
+
+} FontAPI_V1;
 
 #pragma pack(pop)
 

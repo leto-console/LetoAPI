@@ -2,4 +2,4 @@
 
 #include <stddef.h>
 
-const struct LetoAPI_V1* leto_api_v1 = NULL;
+const LetoAPI_V1* leto_api_v1 = NULL;

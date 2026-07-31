@@ -16,14 +16,12 @@
 #pragma pack(push, 4)
 
 /// Global context functions
-struct GlobalsAPI_V1
+typedef struct GlobalsAPI_V1
 {
     // ===================================================
     //               Dynamic Memory Management            
     // ===================================================
 
-    /// TODO: Warning! Potential single point of failure.
-    /// The allocator can crash the entire application.
     /**
      * @brief Get application dynamic memory allocator
      */
@@ -49,7 +47,7 @@ struct GlobalsAPI_V1
      */
     uint32_t (*const GetDeviceID)();
 
-};
+} GlobalsAPI_V1;
 
 #pragma pack(pop)
 
