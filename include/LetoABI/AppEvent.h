@@ -8,31 +8,32 @@
 #define INC_ABI_APP_EVENT_H_
 
 #include <stdint.h>
+#include <stdbool.h>
 
 #include <ABI/AppEventSources.h>
 
 #pragma pack(push, 4)
 
 /**
- * @brief Событие для приложения
+ * @brief Application event structure
  */
 struct AppEvent
 {
-	/// Источник события
+	/// Event source (values from AppEventSources)
 	uint16_t source;
 	
-	/// Идентификатор события
+	/// Event identifier
 	uint16_t id;
 	
-	/// Данные события
-	uint32_t data;
+	/// Event payload data
+	uint32_t data
 };
 
 #pragma pack(pop)
 
 /**
- * @brief Тип функции для сравнения двух событий
+ * @brief Function pointer type for comparing two events
  */
-using AppEventComparator = bool(*)(const AppEvent& e1, const AppEvent& e2);
+typedef bool (*AppEventComparator)(const struct AppEvent* e1, const struct AppEvent* e2);
 
 #endif /* INC_ABI_APP_EVENT_H_ */

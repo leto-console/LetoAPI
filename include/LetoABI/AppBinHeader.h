@@ -8,12 +8,11 @@
 #define INC_ABI_APP_BIN_HEADER_H_
 
 #include <stdint.h>
-#include <type_traits>
 
-/// Бинарный файл обычного типа
+/// Standard binary executable type
 #define LETO_EXECUTABLE_TYPE_BIN "LETO_EXEC_BIN"
 
-/// Бинарный файл игрового типа
+/// Game binary executable type
 #define LETO_EXECUTABLE_TYPE_GAME "LETO_EXEC_GAME"
 
 #define LETO_EXECUTABLE_INFO_VAR_NAME __leto_exec_info__
@@ -22,29 +21,31 @@
 #pragma pack(push, 4)
 
 /**
- * @brief Информация об исполняемом бинарном файле (приложении)
+ * @brief Information about the executable binary file (application)
  */
 struct AppBinHeader
 {
-	/// "Магическое" число для проверки
+	/// Magic string for validation
 	char type[16] { LETO_EXECUTABLE_TYPE_BIN };
 
-	/// Версия API, на котором написано приложение (major)
+	/// API major version used by the application
 	uint16_t api_version;
 
-	/// Уникальный идентификатор приложения
+	/// Unique application identifier
 	uint16_t id;
 		
-	/// Название приложения на английском
+	/// Application name in English
 	char en_name[32] {};
 	
-	/// Название приложения на русском
+	/// Application name in Russian
 	char ru_name[32] {};
 };
 
 #pragma pack(pop)
 
+#ifdef __cplusplus
+#include <type_traits>
+static_assert(std::is_standard_layout<AppBinHeader>::value, "AppBinHeader must be a standard layout type");
+#endif
 
-static_assert(std::is_standard_layout<AppBinHeader>::value, "AppBinHeader должен быть standard_layout");
-
-#endif /* INC_ABI_APPLICATION_BINARY_HEADER_H_ */
+#endif /* INC_ABI_APP_BIN_HEADER_H_ */

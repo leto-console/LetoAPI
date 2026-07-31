@@ -8,24 +8,24 @@
 #define INC_ABI_APP_EVENT_SOURCES_H_
 
 /**
- * @brief Источники событий
+ * @brief Event sources
  */
 typedef enum AppEventSources
 {
-	AE_None = 0, 			///< Отсутствие события
+	AE_None = 0, 			///< No event
 	
 	/**
-	 * Глобальные события
+	 * Global events
 	 */
-	AE_Global = 1,			///< Глобальные события (системные прерывания)
+	AE_Global = 1,			///< Global events (system interrupts)
 	
 	/**
-	 * События ввода
+	 * Input events
 	 */
 	
-	AE_Button = 16,			///< Кнопка
-	AE_Encoder,				///< Энкодер
-	AE_Discrete,			///< Дискретная команда
+	AE_Button = 16,			///< Button press / release
+	AE_Encoder,				///< Rotary encoder turn
+	AE_Discrete,			///< Discrete command
 } 
 AppEventSources;
 
