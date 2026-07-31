@@ -10,7 +10,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include <ABI/AppEventSources.h>
+#include <LetoABI/AppEventSources.h>
 
 #pragma pack(push, 4)
 
@@ -26,8 +26,9 @@ typedef struct AppEvent
 	uint16_t id;
 	
 	/// Event payload data
-	uint32_t data
-} AppEvent;
+	uint32_t data;
+} 
+AppEvent;
 
 #pragma pack(pop)
 

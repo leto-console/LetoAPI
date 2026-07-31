@@ -9,7 +9,6 @@ file(
 	"src/*/*.c" 
 	"src/*.c"
 )
-include_directories("include")
 
 if (${PRESET_DEFINE_MACRO} STREQUAL "__STM32__")
 	project("LetoAPI" C CXX ASM)
@@ -67,5 +66,6 @@ install(TARGETS ${PROJECT_NAME}
     ARCHIVE DESTINATION lib     # Для статических библиотек
     LIBRARY DESTINATION lib     # Для динамических библиотек
 )
+target_include_directories(${PROJECT_NAME} PUBLIC include)
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE LETOAPI_EXPORT_LIBRARY)
