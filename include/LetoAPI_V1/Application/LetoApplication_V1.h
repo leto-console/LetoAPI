@@ -66,6 +66,9 @@ struct LetoApplication_V1
 
 #pragma pack(pop)
 
+#ifdef __cplusplus
+#include <type_traits>
 static_assert(std::is_standard_layout<LetoApplication_V1>::value, "LetoApplication_V1 must be a standard layout type");
+#endif
 
 #endif

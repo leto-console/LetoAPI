@@ -64,6 +64,6 @@ static_assert(std::is_standard_layout<LetoAPI_V1>::value, "LetoAPI_V1 must be a 
 #endif
 
 #include <LetoAPI_V1/LetoAPI_V1_Instance.h>
-#include <LetoAPI_V1/LetoAPI_V1_Macros.h>
+#include <LetoAPI_V1/LetoAPI_V1_New.h>
 
 #endif
