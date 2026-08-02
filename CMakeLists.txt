@@ -3,6 +3,9 @@ add_compile_definitions(${PRESET_DEFINE_MACRO})
 cmake_minimum_required(VERSION 3.10)
 project("LetoAPI")
 
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+
 file(
 	GLOB C_SOURCES 
 	"src/*/*/*.c" 
