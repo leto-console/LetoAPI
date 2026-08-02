@@ -11,9 +11,9 @@
 
 typedef int32_t LetoAppStatus_V1; 
 
-#define LETO_V1_WORK_STATUS 		 0;	///< Normal application operation
-#define LETO_V1_CLOSE_STATUS		-1;	///< Application exit request
-#define LETO_V1_ERROR_STATUS 	    -2;	///< Error occurred during application runtime
-#define LETO_V1_NOT_WORK_STATUS     -3;	///< Application not running
+#define LETO_V1_WORK_STATUS 		 0  ///< Normal application operation
+#define LETO_V1_CLOSE_STATUS		-1  ///< Application exit request
+#define LETO_V1_ERROR_STATUS 	    -2  ///< Error occurred during application runtime
+#define LETO_V1_NOT_WORK_STATUS     -3  ///< Application not running
 
 #endif

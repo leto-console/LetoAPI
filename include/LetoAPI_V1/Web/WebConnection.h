@@ -12,17 +12,17 @@
 typedef uint8_t WC_CHANNEL;
 typedef uint8_t WC_PORT;
 
-#define WC_CHANNEL_ALL 		0x00U;				///< Connection with all devices
-#define WC_CHANNEL_UART 	0x01U;				///< Connection via UART
-#define WC_CHANNEL_NRF 		0x02U;				///< Connection via nRF
-#define WC_CHANNEL_MAX 		WC_CHANNEL_NRF;		///< Maximum channel variety
+#define WC_CHANNEL_ALL 		0x00U				///< Connection with all devices
+#define WC_CHANNEL_UART 	0x01U				///< Connection via UART
+#define WC_CHANNEL_NRF 		0x02U				///< Connection via nRF
+#define WC_CHANNEL_MAX 		WC_CHANNEL_NRF		///< Maximum channel variety
 
-#define WC_PORT_PING		0x01U;				///< Port for ping requests
-#define WC_PORT_INFO		0x02U;				///< Information port (heartbeat)
-#define WC_PORT_SYSTEM 		0x20U;				///< Initial port for system ports (0x20...0x60 - 64 ports)
-#define WC_PORT_INF_LOBBY	0x70U;				///< Port for lobby discovery and information exchange
-#define WC_PORT_CON_LOBBY	0x77U;				///< Port for interaction within game lobbies
-#define WC_PORT_APP 		0x80U;				///< Initial port for application interaction (0x80...0xC0 - 64 ports)
+#define WC_PORT_PING		0x01U				///< Port for ping requests
+#define WC_PORT_INFO		0x02U				///< Information port (heartbeat)
+#define WC_PORT_SYSTEM 		0x20U				///< Initial port for system ports (0x20...0x60 - 64 ports)
+#define WC_PORT_INF_LOBBY	0x70U				///< Port for lobby discovery and information exchange
+#define WC_PORT_CON_LOBBY	0x77U				///< Port for interaction within game lobbies
+#define WC_PORT_APP 		0x80U				///< Initial port for application interaction (0x80...0xC0 - 64 ports)
 
 #pragma pack(push, 4)
 

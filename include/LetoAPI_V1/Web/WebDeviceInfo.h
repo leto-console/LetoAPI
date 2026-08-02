@@ -13,8 +13,8 @@
 
 typedef uint8_t WD_FLAG;
 
-#define WD_FLAG_NONE 		(0x00U);
-#define WD_FLAG_READY 		(0x01U << 0);
+#define WD_FLAG_NONE 		(0x00U)
+#define WD_FLAG_READY 		(0x01U << 0)
 
 /**
  * @brief Network device information

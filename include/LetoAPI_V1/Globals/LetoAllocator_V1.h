@@ -12,7 +12,7 @@
 // Align to 4-byte boundary
 #pragma pack(push, 4)
 
-struct LetoAllocator_V1
+typedef struct LetoAllocator_V1
 {
     /**
      * @brief Allocate memory in application dynamic memory
@@ -28,7 +28,8 @@ struct LetoAllocator_V1
      * @param ptr Pointer to the memory block
      */
     void (*const Free)(const void* ptr);
-};
+    
+} LetoAllocator_V1;
 
 #pragma pack(pop)
 

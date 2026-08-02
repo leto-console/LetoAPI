@@ -36,7 +36,7 @@ struct LobbyInfo_V1
 
 #ifdef __cplusplus
 #include <type_traits>
-static_assert(std::is_standard_layout<LobbyConnection_V1>::value, "LobbyConnection_V1 must be a standard layout type");
+static_assert(std::is_standard_layout<LobbyInfo_V1>::value, "LobbyConnection_V1 must be a standard layout type");
 #endif
 
 #endif /* INC_LETO_API_V1_LOBBY_LOBBY_INFO_H_ */
