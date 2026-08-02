@@ -1,12 +1,8 @@
 #pragma once
 
-#ifdef LETOAPI_EXPORT_LIBRARY
-#include "LetoAPI_V1_Version.h"
-#define LETO_API_V1_USE LETO_API_V1_MINOR
-#endif
-
 #if !defined LETO_API_V1_USE
-#error LETO_API_V1_USE must be defined
+#include <LetoAPI_V1/LetoAPI_V1_Version.h>
+#define LETO_API_V1_USE LETO_API_V1_MINOR
 #endif
 
 #if LETO_API_V1_USE < 0
