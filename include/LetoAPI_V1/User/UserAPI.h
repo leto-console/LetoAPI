@@ -17,12 +17,12 @@
 
 // User management functions
 typedef struct UserAPI_V1
-{
+{    
+    /// @brief Get avatar by identifier
+    const LetoBitmap_V1* (*const GetAvatarByID)(uint32_t ID);
+
     /// @brief Get user space
     //NamedSpace* (*const GetUserSpace)();
-    
-    /// @brief Get avatar by identifier
-    bool (*const GetAvatarByID)(uint32_t ID, LetoBitmap_V1* data);
     
 } UserAPI_V1;
 

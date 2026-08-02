@@ -9,10 +9,10 @@
 
 #include <LetoAPI_V1/LetoAPI_V1_Def.h>
 
-#include <stdint.h>
+#include <cstdint>
 
-#include <ABI/AppBinHeader.h>
-#include <ABI/AppEvent.h>
+#include <LetoABI/AppBinHeader.h>
+#include <LetoABI/AppEvent.h>
 
 #include <LetoAPI_V1/LetoAPI_V1.h>
 #include <LetoAPI_V1/Application/LetoAppStatus_V1.h>

@@ -25,7 +25,7 @@ typedef struct GlobalsAPI_V1
     /**
      * @brief Get application dynamic memory allocator
      */
-    struct LetoAllocator_V1* (*const GetAllocator)();
+    const LetoAllocator_V1* (*const GetAllocator)();
 
     // ===================================================
     //                   State Management                 
