@@ -10,10 +10,28 @@ file(
 	"src/*.c"
 )
 
+if("${PRESET_DEFINE_MACRO}" STREQUAL "__STM32__")
+    set(LIBRARY_TYPE STATIC)
+else()
+    set(LIBRARY_TYPE SHARED)
+endif()
+
+add_library(${PROJECT_NAME} ${LIBRARY_TYPE} ${C_SOURCES})
+
+target_include_directories(${PROJECT_NAME} PUBLIC 
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
+
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION bin     # Для исполняемых файлов
+    ARCHIVE DESTINATION lib     # Для статических библиотек
+    LIBRARY DESTINATION lib     # Для динамических библиотек
+)
+target_compile_definitions(${PROJECT_NAME} PRIVATE LETOAPI_EXPORT_LIBRARY)
+
 if (${PRESET_DEFINE_MACRO} STREQUAL "__STM32__")
 	project("LetoAPI" C CXX ASM)
-
-	add_library(${PROJECT_NAME} STATIC ${C_SOURCES})
 
 	target_compile_definitions(${PROJECT_NAME} PRIVATE
 		USE_HAL_DRIVER
@@ -36,8 +54,6 @@ if (${PRESET_DEFINE_MACRO} STREQUAL "__STM32__")
 
 elseif (${PRESET_DEFINE_MACRO} STREQUAL "__WIN__")
 
-	add_library(${PROJECT_NAME} SHARED ${C_SOURCES})
-
 	# Включаем предупреждения только для вашей цели
 	target_compile_options(${PROJECT_NAME} PRIVATE
 		$<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall -Wextra -Wunused>
@@ -53,19 +69,9 @@ elseif (${PRESET_DEFINE_MACRO} STREQUAL "__LINUX__")
 
 elseif (${PRESET_DEFINE_MACRO} STREQUAL "__TERMUX__")
 
-	# add_library(${PROJECT_NAME} SHARED ${C_SOURCES})
 	# set_target_properties(${PROJECT_NAME} PROPERTIES POSITION_INDEPENDENT_CODE ON)
 # 
 	# target_link_libraries(${PROJECT_NAME} PRIVATE httplib::httplib)
 	# target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 endif ()
-
-install(TARGETS ${PROJECT_NAME}
-    RUNTIME DESTINATION bin     # Для исполняемых файлов
-    ARCHIVE DESTINATION lib     # Для статических библиотек
-    LIBRARY DESTINATION lib     # Для динамических библиотек
-)
-target_include_directories(${PROJECT_NAME} PUBLIC include)
-
-target_compile_definitions(${PROJECT_NAME} PRIVATE LETOAPI_EXPORT_LIBRARY)
