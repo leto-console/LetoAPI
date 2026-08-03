@@ -13,11 +13,7 @@ file(
 	"src/*.c"
 )
 
-if("${PRESET_DEFINE_MACRO}" STREQUAL "__STM32__")
-    set(LIBRARY_TYPE STATIC)
-else()
-    set(LIBRARY_TYPE SHARED)
-endif()
+set(LIBRARY_TYPE STATIC)
 
 add_library(${PROJECT_NAME} ${LIBRARY_TYPE} ${C_SOURCES})
 
