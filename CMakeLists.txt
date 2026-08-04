@@ -27,6 +27,7 @@ install(TARGETS ${PROJECT_NAME}
     ARCHIVE DESTINATION lib     # Для статических библиотек
     LIBRARY DESTINATION lib     # Для динамических библиотек
 )
+target_compile_definitions(${PROJECT_NAME} PRIVATE LETOAPI_EXPORT_LIBRARY)
 
 if (${PRESET_DEFINE_MACRO} STREQUAL "__STM32__")
 	project("LetoAPI" C CXX ASM)
