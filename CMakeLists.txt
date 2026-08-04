@@ -13,9 +13,17 @@ file(
 	"src/*.c"
 )
 
-set(LIBRARY_TYPE STATIC)
+if("${PRESET_DEFINE_MACRO}" STREQUAL "__STM32__" OR NOT LETO_PATH)
+    set(LIBRARY_TYPE STATIC)
+else()
+	set(LIBRARY_TYPE SHARED)
+endif()
 
 add_library(${PROJECT_NAME} ${LIBRARY_TYPE} ${C_SOURCES})
+
+if("${LIBRARY_TYPE}" STREQUAL "SHARED")
+	target_compile_definitions(${PROJECT_NAME} PRIVATE LETOCORE_SHARED)
+endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -27,6 +35,7 @@ install(TARGETS ${PROJECT_NAME}
     ARCHIVE DESTINATION lib     # Для статических библиотек
     LIBRARY DESTINATION lib     # Для динамических библиотек
 )
+target_compile_definitions(${PROJECT_NAME} PRIVATE LETOAPI_EXPORT_LIBRARY)
 
 if (${PRESET_DEFINE_MACRO} STREQUAL "__STM32__")
 	project("LetoAPI" C CXX ASM)

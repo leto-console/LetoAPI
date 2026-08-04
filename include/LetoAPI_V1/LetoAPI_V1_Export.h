@@ -8,3 +8,13 @@
 #if LETO_API_V1_USE < 0
 #error LETO_API_V1_USE must be a non-negative number
 #endif
+
+#if defined(_WIN32) && defined(LETOCORE_SHARED)
+    #ifdef LETOAPI_EXPORT_LIBRARY
+        #define LETO_API_EXPORT __declspec(dllexport)
+    #else
+        #define LETO_API_EXPORT __declspec(dllimport)
+    #endif
+#else
+    #define LETO_API_EXPORT //__attribute__((visibility("default")))
+#endif

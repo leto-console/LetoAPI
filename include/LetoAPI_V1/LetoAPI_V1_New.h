@@ -13,25 +13,25 @@
 #include <LetoAPI_V1/Globals/LetoAllocator_V1.h>
 
 // Placement new overload to work with the LetoAllocator_V1 interface
-inline void* operator new(size_t size, LetoAllocator_V1* allocator) noexcept
+inline void* operator new(size_t size, const LetoAllocator_V1* allocator) noexcept
 {
     return allocator->Alloc(static_cast<uint32_t>(size));
 }
 
 // Placement new[] overload for arrays (if required)
-inline void* operator new[](size_t size, LetoAllocator_V1* allocator) noexcept
+inline void* operator new[](size_t size, const LetoAllocator_V1* allocator) noexcept
 {
     return allocator->Alloc(static_cast<uint32_t>(size));
 }
 
 // Placement delete overload (called automatically if the constructor throws an exception)
-inline void operator delete(void* ptr, LetoAllocator_V1* allocator) noexcept
+inline void operator delete(void* ptr, const LetoAllocator_V1* allocator) noexcept
 {
     allocator->Free(ptr);
 }
 
 // Placement delete[] overload for arrays
-inline void operator delete[](void* ptr, LetoAllocator_V1* allocator) noexcept
+inline void operator delete[](void* ptr, const LetoAllocator_V1* allocator) noexcept
 {
     allocator->Free(ptr);
 }
