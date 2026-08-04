@@ -13,13 +13,17 @@ file(
 	"src/*.c"
 )
 
-if("${PRESET_DEFINE_MACRO}" STREQUAL "__STM32__")
+if("${PRESET_DEFINE_MACRO}" STREQUAL "__STM32__" OR NOT LETO_PATH)
     set(LIBRARY_TYPE STATIC)
 else()
-    set(LIBRARY_TYPE SHARED)
+	set(LIBRARY_TYPE SHARED)
 endif()
 
 add_library(${PROJECT_NAME} ${LIBRARY_TYPE} ${C_SOURCES})
+
+if("${LIBRARY_TYPE}" STREQUAL "SHARED")
+	target_compile_definitions(${PROJECT_NAME} PRIVATE LETOCORE_SHARED)
+endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

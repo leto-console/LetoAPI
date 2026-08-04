@@ -9,7 +9,7 @@
 #error LETO_API_V1_USE must be a non-negative number
 #endif
 
-#ifdef _WIN32
+#if defined(_WIN32) && defined(LETOCORE_SHARED)
     #ifdef LETOAPI_EXPORT_LIBRARY
         #define LETO_API_EXPORT __declspec(dllexport)
     #else
