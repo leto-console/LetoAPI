@@ -47,6 +47,16 @@ typedef struct GlobalsAPI_V1
      */
     uint32_t (*const GetDeviceID)();
 
+    /**
+     * @brief Calculates the CRC16 checksum for a given data buffer.
+     * 
+     * @param[in] data   Pointer to the input data buffer.
+     * @param[in] length Size of the data buffer in bytes.
+     * 
+     * @return The calculated 16-bit CRC value.
+     */
+    uint16_t (*const CalcCRC16)(const void* data, uint32_t length);
+
 } GlobalsAPI_V1;
 
 #pragma pack(pop)
