@@ -16,6 +16,8 @@
 #include <LetoAPI_V1/Font/FontAPI.h>
 #include <LetoAPI_V1/Math/MathAPI.h>
 #include <LetoAPI_V1/Lobby/LobbyAPI.h>
+#include <LetoAPI_V1/Bitmap/BitmapAPI.h>
+#include <LetoAPI_V1/Graphics/GraphicsAPI.h>
 
 // Align to 4-byte boundary
 #pragma pack(push, 4)
@@ -52,6 +54,12 @@ typedef struct LetoAPI_V1
 
     /// Game lobby management functions
     const LobbyAPI_V1* const Lobby;
+
+    // Bitmap management functions
+    const BitmapAPI_V1* const Bitmap;
+
+    // Graphics functions
+    const GraphicsAPI_V1* const Graphics;
 
 #endif /* LETO_API_V1_USE */
 } LetoAPI_V1;

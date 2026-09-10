@@ -13,7 +13,7 @@ file(
 	"src/*.c"
 )
 
-if("${PRESET_DEFINE_MACRO}" STREQUAL "__STM32__" OR NOT DEFINED ENV{LETO_PATH})
+if(NOT DEFINED ENV{LETO_PATH} OR ${PRESET_DEFINE_MACRO} STREQUAL "__STM32__")
     set(LIBRARY_TYPE STATIC)
 else()
 	set(LIBRARY_TYPE SHARED)
@@ -21,7 +21,7 @@ endif()
 
 add_library(${PROJECT_NAME} ${LIBRARY_TYPE} ${C_SOURCES})
 
-if("${LIBRARY_TYPE}" STREQUAL "SHARED")
+if(${LIBRARY_TYPE} STREQUAL "SHARED")
 	target_compile_definitions(${PROJECT_NAME} PRIVATE LETOCORE_SHARED)
 endif()
 
@@ -88,3 +88,28 @@ elseif (${PRESET_DEFINE_MACRO} STREQUAL "__TERMUX__")
 	# target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 endif ()
+
+if(DEFINED ENV{LETO_PATH})
+    message(STATUS "[${PROJECT_NAME}] Найдена переменная окружения LETO_PATH")
+
+	if (${PRESET_DEFINE_MACRO} STREQUAL "__WIN__")
+		add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+			COMMAND ${CMAKE_COMMAND} -E copy_directory
+			"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
+			"$ENV{LETO_PATH}/Common/${CMAKE_PRESET_NAME}/bin/"
+		)
+	endif()
+
+	add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+		"${CMAKE_LIBRARY_OUTPUT_DIRECTORY}"
+		"$ENV{LETO_PATH}/Common/${CMAKE_PRESET_NAME}/lib/"
+	)
+
+	add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+		"${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}"
+		"$ENV{LETO_PATH}/Common/${CMAKE_PRESET_NAME}/lib/"
+	)
+
+endif()
