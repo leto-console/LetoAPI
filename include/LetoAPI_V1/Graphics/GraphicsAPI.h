@@ -26,8 +26,9 @@ typedef struct GraphicsAPI_V1
      * @param[in] y Start Y coordinate on screen
      * @param[in] bitmap Bitmap to draw
      * @param[in] color Drawing color
+     * @param[in] inverse Inverse bitmap (1=0, 0=1)
      */
-    void (*const DrawBitmap)(LetoScreen_V1* screen, int32_t x, int32_t y, const LetoBitmap_V1* bitmap, LetoColor_V1 color);
+    void (*const DrawBitmap)(LetoScreen_V1* screen, int32_t x, int32_t y, const LetoBitmap_V1* bitmap, LetoColor_V1 color, bool inverse);
 
     /**
      * @brief Draw single pixel on display
