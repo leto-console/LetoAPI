@@ -9,6 +9,10 @@
 #error LETO_API_V1_USE must be a non-negative number
 #endif
 
+#if LETO_API_V1_USE > LETO_API_V1_MINOR
+#error LETO_API_V1_USE not supported
+#endif
+
 #if defined(_WIN32) && defined(LETOCORE_SHARED)
     #ifdef LETOAPI_EXPORT_LIBRARY
         #define LETO_API_EXPORT __declspec(dllexport)
