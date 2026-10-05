@@ -9,6 +9,7 @@
 
 #include <LetoAPI_V1/LetoAPI_V1_Def.h>
 #include <LetoAPI_V1/Graphics/LetoColor_V1.h>
+#include <LetoAPI_V1/Graphics/LetoTextStyle_V1.h>
 
 #include <stdint.h>
 
@@ -107,6 +108,44 @@ typedef struct GraphicsAPI_V1
      * @param[in] color Drawing color
      */
     void (*const DrawTriangle)(LetoScreen_V1* screen, int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t thickness, LetoColor_V1 color);
+
+    /**
+     * @brief Fill entire screen with the given color
+     * 
+     * @param[in] screen Target screen instance
+     * @param[in] color Color to fill the screen with
+     */
+    void (*const FillScreen)(LetoScreen_V1* screen, LetoColor_V1 color);
+
+    /**
+     * @brief Draw a UTF-8 text
+     * 
+     * @param[in] screen Target screen instance
+     * @param[in] x Top-left X coordinate
+     * @param[in] y Top-left Y coordinate
+     * @param[in] text Null-terminated text pointer
+     * @param[in] length Count of bytes in the text
+     * @param[in] font Text font
+     * @param[in] color Text color
+     * @param[in] background Background color
+     * @param[in] style Text style
+     */
+    void (*const DrawText)(
+        LetoScreen_V1* screen, int32_t x, int32_t y, 
+        const char* text, uint32_t length, 
+        const LetoFont_V1* font, 
+        LetoColor_V1 color, LetoColor_V1 background, 
+        LetoTextStyle_V1 style);
+
+    /**
+     * @brief Get a UTF-8 text width on screen
+     * 
+     * @param[in] text Null-terminated text pointer
+     * @param[in] length Count of bytes in the text
+     * @param[in] font Text font
+     * @param[in] style Text style
+     */
+    uint32_t (*const GetTextWidth)(const char* text, uint32_t length, const LetoFont_V1* font, LetoTextStyle_V1 style);
 
 } GraphicsAPI_V1;
 

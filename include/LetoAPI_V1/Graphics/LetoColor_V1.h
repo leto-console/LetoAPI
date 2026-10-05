@@ -17,9 +17,10 @@
  */
 typedef struct LetoColor_V1
 {
-    uint8_t R; ///< Red component (0-255)
-    uint8_t G; ///< Green component (0-255)
-    uint8_t B; ///< Blue component (0-255)
+    uint8_t R;          ///< Red component (0-255)
+    uint8_t G;          ///< Green component (0-255)
+    uint8_t B;          ///< Blue component (0-255)
+    uint8_t A;          ///< Alpha component: (0=Transparent, 255=full opaque)
 
 } LetoColor_V1;
 

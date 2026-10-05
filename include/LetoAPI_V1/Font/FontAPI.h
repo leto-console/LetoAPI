@@ -8,6 +8,7 @@
 #define INC_LETO_API_V1_FONT_FONT_API_V1_H_
 
 #include <LetoAPI_V1/LetoAPI_V1_Def.h>
+#include <LetoAPI_V1/Font/LetoFont_V1_Types.h>
 
 #include <stdint.h>
 
@@ -18,13 +19,35 @@
 typedef struct FontAPI_V1
 {
     /**
-     * @brief Get font
+     * @brief Get old-style font
      * 
-     * @param width Font width
-     * @param height Font height
-     * @param type Font type (0 - regular, 1 - small)
+     * @param[in] width Font width
+     * @param[in] height Font height
+     * @param[in] type Font type (0 - regular, 1 - small)
      */
     const LetoFont_V1* (*const GetFont)(uint32_t width, uint32_t height, uint32_t type);
+
+    /**
+     * @brief Find font
+     * 
+     * @param[in] height Font height
+     * @param[in] type Font type
+     */
+    const LetoFont_V1* (*const FindFont)(uint8_t height, LetoFont_V1_Type type);
+
+    /**
+     * @brief Get height of font
+     * 
+     * @param[in] font Font instance
+     */
+    uint8_t (*const GetHeight)(const LetoFont_V1* font);
+
+    /**
+     * @brief Get type of font
+     * 
+     * @param[in] font Font instance
+     */
+    LetoFont_V1_Type (*const GetType)(const LetoFont_V1* font);
 
 } FontAPI_V1;
 
