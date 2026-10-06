@@ -18,6 +18,7 @@
 #include <LetoAPI_V1/Lobby/LobbyAPI.h>
 #include <LetoAPI_V1/Bitmap/BitmapAPI.h>
 #include <LetoAPI_V1/Graphics/GraphicsAPI.h>
+#include <LetoAPI_V1/File/FileAPI.h>
 
 // Align to 4-byte boundary
 #pragma pack(push, 4)
@@ -60,6 +61,9 @@ typedef struct LetoAPI_V1
 
     // Graphics functions
     const GraphicsAPI_V1* const Graphics;
+
+    // File management functions
+    const FileAPI_V1* const File;
 
 #endif /* LETO_API_V1_USE */
 } LetoAPI_V1;

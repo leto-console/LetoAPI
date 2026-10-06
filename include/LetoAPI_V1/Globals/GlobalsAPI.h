@@ -57,6 +57,18 @@ typedef struct GlobalsAPI_V1
      */
     uint16_t (*const CalcCRC16)(const void* data, uint32_t length);
 
+    /**
+     * @brief Get application execution directory.
+     * 
+     * Always writes a null-terminated string. Truncates if buffer is too small.
+     * 
+     * @param[out] buffer Destination buffer.
+     * @param[in] length Buffer size in bytes.
+     * 
+     * @return `true` on success, `false` if truncated or app not running.
+     */
+    bool (*const GetAppDir)(char* buffer, uint32_t length);
+
 } GlobalsAPI_V1;
 
 #pragma pack(pop)

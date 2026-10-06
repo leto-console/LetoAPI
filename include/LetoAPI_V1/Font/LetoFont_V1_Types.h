@@ -16,11 +16,11 @@ typedef uint8_t LetoFont_V1_Type;
  */
 typedef enum LetoFont_V1_Type_enum
 {
-    LFV1_NONE = 0,          ///< None type font
-    LFV1_BASE_NORMAL,       ///< Base Normal font
-    LFV1_BASE_BOLD,         ///< Base Bold font
+    LFT_V1_NONE = 0,     ///< None type font
+    LFT_V1_BASE_NORMAL,       ///< Base Normal font
+    LFT_V1_BASE_BOLD,         ///< Base Bold font
 
-    _LFV1_COUNT,            ///< Count of font types
+    _LFT_V1_COUNT,            ///< Count of font types
 } 
 LetoFont_V1_Type_enum;
 
