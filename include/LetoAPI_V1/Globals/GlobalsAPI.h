@@ -11,6 +11,7 @@
 #include <stdbool.h>
 
 #include <LetoAPI_V1/Globals/LetoAllocator_V1.h>
+#include <LetoAPI_V1/Globals/LetoLanguage_V1.h>
 
 // Align to 4-byte boundary
 #pragma pack(push, 4)
@@ -25,7 +26,7 @@ typedef struct GlobalsAPI_V1
     /**
      * @brief Get application dynamic memory allocator
      */
-    const LetoAllocator_V1* (*const GetAllocator)();
+    const LetoAllocator_V1* (*const GetAllocator)(void);
 
     // ===================================================
     //                   State Management                 
@@ -35,17 +36,17 @@ typedef struct GlobalsAPI_V1
      * @brief Get system debug mode state
      * @return `true` if enabled, `false` if disabled
      */
-    bool (*const GetDebugMode)();
+    bool (*const GetDebugMode)(void);
 
     /**
      * @brief Get number of milliseconds elapsed since MCU startup
      */
-    uint32_t (*const GetCurrentMs)();
+    uint32_t (*const GetCurrentMs)(void);
 
     /**
      * @brief Get device hardware identifier
      */
-    uint32_t (*const GetDeviceID)();
+    uint32_t (*const GetDeviceID)(void);
 
     /**
      * @brief Calculates the CRC16 checksum for a given data buffer.
@@ -68,6 +69,11 @@ typedef struct GlobalsAPI_V1
      * @return `true` on success, `false` if truncated or app not running.
      */
     bool (*const GetAppDir)(char* buffer, uint32_t length);
+
+    /**
+     * @brief Get current system language.
+     */
+    LetoLanguage_V1 (*const GetSystemLanguage) (void);
 
 } GlobalsAPI_V1;
 
