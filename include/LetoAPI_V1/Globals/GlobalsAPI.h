@@ -75,6 +75,13 @@ typedef struct GlobalsAPI_V1
      */
     LetoLanguage_V1 (*const GetSystemLanguage) (void);
 
+    /**
+     * @brief Get application ID.
+     * 
+     * @return Application ID, or `0` if no app is running.
+     */
+    uint16_t (*const GetAppID)(void);
+
 } GlobalsAPI_V1;
 
 #pragma pack(pop)
