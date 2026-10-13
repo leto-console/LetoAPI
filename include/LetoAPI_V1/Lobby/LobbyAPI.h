@@ -34,6 +34,7 @@ typedef struct LobbyAPI_V1
      * @param[out] lobby Opened lobby connection instance
      * @param[in] app_id Application identifier
      * @param[in] max_count Maximum number of connections
+     * @param[in] callback Callback function to receive data from the lobby
      */
     bool (*const CreateLobby)(struct LobbyConnection_V1* lobby, uint16_t app_id, uint8_t max_count, LobbyConnection_V1_Callback callback);
 
