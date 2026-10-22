@@ -378,3 +378,6 @@ Core/Src/Utils/ConfigIO
 
 # Lib
 [Ll]ib/
+
+# MacOS
+.DS_Store
