@@ -82,6 +82,19 @@ typedef struct GlobalsAPI_V1
      */
     uint16_t (*const GetAppID)(void);
 
+    /**
+     * @brief Get number of microseconds elapsed since MCU startup
+     */
+    uint32_t (*const GetCurrentMcs)(void);
+
+    /**
+     * @brief Terminates the app and shows the indigo crash screen.
+     * 
+     * @param[in] message Short problem description (NUL-terminated, non-NULL).
+     * @param[in] data    Optional problem context, e.g. stack trace (NUL-terminated, may be NULL).
+     */
+    void (*const CrashIndigoScreen)(const char* message, const char* data);
+
 } GlobalsAPI_V1;
 
 #pragma pack(pop)
