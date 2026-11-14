@@ -130,7 +130,7 @@ typedef struct GraphicsAPI_V1
      * @param[in] background Background color
      * @param[in] style Text style
      */
-    void (*const DrawText)(
+    void (*const DrawString)(
         LetoScreen_V1* screen, int32_t x, int32_t y, 
         const char* text, uint32_t length, 
         const LetoFont_V1* font, 

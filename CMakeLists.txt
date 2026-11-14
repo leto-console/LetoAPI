@@ -1,7 +1,7 @@
-add_compile_definitions(${PRESET_DEFINE_MACRO})
-
 cmake_minimum_required(VERSION 3.10)
-project("LetoAPI")
+project("LetoAPI" C CXX)
+
+add_compile_definitions(${PRESET_DEFINE_MACRO})
 
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -13,10 +13,10 @@ file(
 	"src/*.c"
 )
 
-if(NOT DEFINED ENV{LETO_PATH} OR ${PRESET_DEFINE_MACRO} STREQUAL "__STM32__")
-    set(LIBRARY_TYPE STATIC)
+if(DEFINED ENV{LETO_PATH} AND WIN32)
+    set(LIBRARY_TYPE SHARED)
 else()
-	set(LIBRARY_TYPE SHARED)
+	set(LIBRARY_TYPE STATIC)
 endif()
 
 add_library(${PROJECT_NAME} ${LIBRARY_TYPE} ${C_SOURCES})
@@ -38,7 +38,7 @@ install(TARGETS ${PROJECT_NAME}
 target_compile_definitions(${PROJECT_NAME} PRIVATE LETOAPI_EXPORT_LIBRARY)
 
 if (${PRESET_DEFINE_MACRO} STREQUAL "__STM32__")
-	project("LetoAPI" C CXX ASM)
+	enable_language(ASM)
 
 	target_compile_definitions(${PROJECT_NAME} PRIVATE
 		USE_HAL_DRIVER
