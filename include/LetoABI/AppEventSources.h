@@ -18,6 +18,7 @@ typedef enum AppEventSources
 	 * Global events
 	 */
 	AE_Global = 1,			///< Global events (system interrupts)
+	AE_UserInterface,		///< User interface events
 	
 	/**
 	 * Input events
