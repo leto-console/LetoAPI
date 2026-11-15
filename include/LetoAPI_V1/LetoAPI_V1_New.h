@@ -15,24 +15,28 @@
 // Placement new overload to work with the LetoAllocator_V1 interface
 inline void* operator new(size_t size, const LetoAllocator_V1* allocator) noexcept
 {
+    if (!allocator || !allocator->Alloc) return nullptr;
     return allocator->Alloc(static_cast<uint32_t>(size));
 }
 
 // Placement new[] overload for arrays (if required)
 inline void* operator new[](size_t size, const LetoAllocator_V1* allocator) noexcept
 {
+    if (!allocator || !allocator->Alloc) return nullptr;
     return allocator->Alloc(static_cast<uint32_t>(size));
 }
 
 // Placement delete overload (called automatically if the constructor throws an exception)
 inline void operator delete(void* ptr, const LetoAllocator_V1* allocator) noexcept
 {
+    if (!allocator || !allocator->Free) return;
     allocator->Free(ptr);
 }
 
 // Placement delete[] overload for arrays
 inline void operator delete[](void* ptr, const LetoAllocator_V1* allocator) noexcept
 {
+    if (!allocator || !allocator->Free) return;
     allocator->Free(ptr);
 }
 
