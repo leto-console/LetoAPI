@@ -19,7 +19,7 @@
     #else
         #define LETO_API_EXPORT __declspec(dllimport)
     #endif
-#elif defined(__GNUC__) || defined(__clang__)
+#elif ! defined(_WIN32) && (defined(__GNUC__) || defined(__clang__))
     #define LETO_API_EXPORT __attribute__((visibility("default")))
 #else
     #define LETO_API_EXPORT
