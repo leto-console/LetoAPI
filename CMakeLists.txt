@@ -80,13 +80,6 @@ elseif (${PRESET_DEFINE_MACRO} STREQUAL "__LINUX__")
 	# add_executable (${PROJECT_NAME} "Main/App.cpp" ${C_SOURCES})
 	# target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Widgets)
 
-elseif (${PRESET_DEFINE_MACRO} STREQUAL "__TERMUX__")
-
-	# set_target_properties(${PROJECT_NAME} PROPERTIES POSITION_INDEPENDENT_CODE ON)
-# 
-	# target_link_libraries(${PROJECT_NAME} PRIVATE httplib::httplib)
-	# target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
-
 endif ()
 
 if(DEFINED ENV{LETO_PATH})
